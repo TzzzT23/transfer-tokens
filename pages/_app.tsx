@@ -1,6 +1,8 @@
 import { message } from 'antd'
+import ConfigProvider from 'antd/lib/config-provider'
 
-import 'styles/globals.css'
+import 'styles/globals.scss'
+import themeConfig from 'utils/configs/theme'
 import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
@@ -19,9 +21,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const [_, contextHolder] = message.useMessage()
 
   return (
-    <>
+    <ConfigProvider theme={themeConfig}>
       {contextHolder}
       {getLayout(<Component {...pageProps} />)}
-    </>
+    </ConfigProvider>
   )
 }

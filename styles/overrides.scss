@@ -1,0 +1,15 @@
+.ant {
+  &-form {
+    &-item:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &-input-number {
+    width: 100%;
+  }
+
+  &-message-notice-content {
+    cursor: pointer;
+  }
+}
