@@ -1,3 +1,3 @@
 export default function MintTokens() {
-  return <div>Minting Tokens</div>;
+  return <div>Minting Tokens</div>
 }

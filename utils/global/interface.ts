@@ -1,6 +1,6 @@
-import type { NoticeType } from "antd/lib/message/interface";
+import type { NoticeType } from 'antd/lib/message/interface'
 
 export interface IMessage {
-  content: string;
-  type?: NoticeType;
+  content: string
+  type?: NoticeType
 }
