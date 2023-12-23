@@ -24,6 +24,26 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+# Environment Setup
+
+To run this project, you need to set up your environment variables correctly. This includes setting up the `NEXT_PUBLIC_WALLET_ADDRESS`.
+
+## Setting up the `.env` file
+
+1. Create a new file in the root directory of your project and name it `.env`.
+2. Open the `.env` file and add the following line:
+
+```
+NEXT_PUBLIC_WALLET_ADDRESS=your_wallet_address_here
+
+```
+
+Replace `your_wallet_address_here` with your actual wallet address from the Goerli Test Network.
+
+1. Save and close the `.env` file.
+
+Your project is now ready to run with the correct environment variables.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
