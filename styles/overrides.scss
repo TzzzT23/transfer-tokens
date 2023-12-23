@@ -1,0 +1,26 @@
+.ant {
+  &-form {
+    &-item {
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      &-control-input-content {
+        height: 36px;
+
+        div,
+        input {
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  &-input-number {
+    width: 100%;
+  }
+
+  &-message-notice-content {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,15 @@
+.connect {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 50%;
+  transform: translate(0, -50%);
+
+  > div {
+    text-align: center;
+  }
+
+  button {
+    max-width: 20rem;
+    width: 100%;
+  }
+}

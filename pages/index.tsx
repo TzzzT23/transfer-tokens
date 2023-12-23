@@ -1,23 +1,26 @@
 import Head from 'next/head'
 import Layout from 'layout'
-import MintTokens from 'components/templates/mint-tokens'
+import ConnectWallet from 'components/templates/connect-wallet'
 
 import type { ReactElement } from 'react'
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
       <Head>
-        <title>Mint Tokens</title>
-        <meta name='description' content='Minting tokens to a certain wallet' />
+        <title>Connect Wallet</title>
+        <meta
+          name='description'
+          content='Connecting to wallet using metamask'
+        />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <MintTokens />
+      <ConnectWallet />
     </>
   )
 }
 
-Home.getLayout = function getLayout(page: ReactElement) {
+HomePage.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>
 }

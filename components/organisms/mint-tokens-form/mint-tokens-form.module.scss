@@ -1,0 +1,14 @@
+.mint {
+  &--title {
+    font-size: 1.25rem;
+  }
+
+  &--subtitle {
+    word-break: break-word;
+    color: #9b9b9b;
+  }
+
+  &--button {
+    margin-block-start: 1rem;
+  }
+}
