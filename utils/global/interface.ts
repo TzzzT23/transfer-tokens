@@ -6,6 +6,6 @@ export interface IMessage {
   type?: NoticeType
 }
 
-type ValidationKeys = 'AMOUNT'
+type ValidationKeys = 'AMOUNT' | 'WALLET_ADDRESS'
 
 export type Validations = Record<ValidationKeys, Rule[]>

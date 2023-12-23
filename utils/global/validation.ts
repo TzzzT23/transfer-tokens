@@ -17,4 +17,14 @@ export const validation: Validations = {
       },
     },
   ],
+  WALLET_ADDRESS: [
+    {
+      required: true,
+      message: 'The recipient wallet address field is required.',
+    },
+    {
+      pattern: /^0x[a-fA-F0-9]{40}$/,
+      message: 'Wallet format is wrong. ',
+    },
+  ],
 }

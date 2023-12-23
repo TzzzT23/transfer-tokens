@@ -9,20 +9,19 @@ import Row from 'antd/lib/row'
 import Col from 'antd/lib/col'
 import Form from 'antd/lib/form'
 import Button from 'antd/lib/button'
-import InputNumber from 'antd/lib/input-number'
+import Input from 'antd/lib/input'
 
 import { validation } from 'utils/global/validation'
 import { message } from 'utils/global'
-import { WEB } from 'utils/statics/routes'
 import useDebounce from 'utils/hooks/useDebounce'
 import ABI from 'utils/statics/abi.json'
-import styles from './mint-tokens-form.module.scss'
-import type { MintTokensField } from './interface'
+import styles from './transfer-tokens-form.module.scss'
+import type { TransferTokensField } from './interface'
 
-export default function MintTokensForm() {
-  const { push, query } = useRouter()
-  const [amount, setAmount] = useState<number>()
-  const debouncedAmount = useDebounce(amount)
+export default function TransferTokensForm() {
+  const { query } = useRouter()
+  const [address, setAddress] = useState<string>()
+  const debouncedAddress = useDebounce(address)
   const {
     config,
     isError: isPrepareError,
@@ -31,25 +30,22 @@ export default function MintTokensForm() {
     address: process.env.NEXT_PUBLIC_WALLET_ADDRESS as `0x${string}`,
     abi: ABI,
     chainId: 5,
-    functionName: 'mint',
-    args: [debouncedAmount],
-    enabled: !!debouncedAmount,
+    functionName: 'transfer(address, uint256)',
+    args: [debouncedAddress, parseInt(query?.amount as string)],
+    enabled: !!debouncedAddress,
   })
   const { data, write } = useContractWrite(config)
   const { isLoading, isSuccess, error, isError } = useWaitForTransaction({
     hash: data?.hash,
   })
 
-  function onChange({ amount }: MintTokensField) {
-    setAmount(amount)
+  function onChange({ walletAddress }: TransferTokensField) {
+    setAddress(walletAddress)
   }
 
   useEffect(() => {
     if (isSuccess) {
-      message({ content: 'Successfully minted tokens.' })
-      push(
-        `${WEB.TRANSFER_TOKENS}?wallet=${query?.wallet}&amount=${debouncedAmount}`
-      )
+      message({ content: 'Successfully transferred tokens.' })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess])
@@ -72,41 +68,41 @@ export default function MintTokensForm() {
     >
       <Col span={24}>
         <Row gutter={[0, 8]}>
-          <Col className={styles['mint--title']} span={24}>
-            Minting Tokens
+          <Col className={styles['transfer--title']} span={24}>
+            Transfer Tokens
           </Col>
-          <Col span={24} className={styles['mint--subtitle']}>
+          <Col span={24} className={styles['transfer--subtitle']}>
             connected wallet: {query?.wallet ?? '--'}
           </Col>
         </Row>
       </Col>
       <Col span={24}>
         <Form
-          className={styles['mint--form']}
+          className={styles['transfer--form']}
           wrapperCol={{ span: 24 }}
           labelCol={{ span: 24 }}
           onValuesChange={onChange}
           onFinish={() => write?.()}
           autoComplete='off'
         >
-          <Form.Item<MintTokensField>
-            label='Amount'
-            name='amount'
-            rules={validation.AMOUNT}
+          <Form.Item<TransferTokensField>
+            label='Wallet Address'
+            name='walletAddress'
+            rules={validation.WALLET_ADDRESS}
             required
           >
-            <InputNumber placeholder='Enter token amounts' controls={false} />
+            <Input placeholder='Enter recipient wallet address' />
           </Form.Item>
           <Form.Item>
             <Button
-              className={styles['mint--button']}
+              className={styles['transfer--button']}
               type='primary'
               htmlType='submit'
               disabled={!write || isLoading}
               loading={isLoading}
               block
             >
-              {isLoading ? 'Minting' : 'Mint'} Tokens
+              {isLoading ? 'Transferring' : 'Transfer'} Tokens
             </Button>
           </Form.Item>
         </Form>

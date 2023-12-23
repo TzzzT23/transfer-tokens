@@ -1,3 +1,3 @@
-export interface MintField {
+export interface MintTokensField {
   amount: number
 }
