@@ -1,0 +1,11 @@
+.tokens {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 50%;
+  transform: translate(0, -50%);
+
+  &__card {
+    max-width: 31.25rem;
+    margin-inline: auto;
+  }
+}
