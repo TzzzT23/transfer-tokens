@@ -10,7 +10,6 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@preact/signals-react": "^2.0.0",
     "antd": "^5.12.4",
     "next": "14.0.4",
     "react": "^18",
